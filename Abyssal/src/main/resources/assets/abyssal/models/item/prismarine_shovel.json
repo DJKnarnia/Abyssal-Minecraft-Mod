@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "item/prismarine_shovel"
+        "layer0": "abyssal:item/prismarine_shovel"
     }
 }
