@@ -1,13 +1,12 @@
 package djknarnia.abyssal.block;
 
-import djknarnia.abyssal.abyssal;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.FireBlock;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-
-@Mod.EventBusSubscriber(modid = abyssal.modid, bus = Bus.FORGE)
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class FlareFire extends FireBlock {
 
@@ -15,12 +14,16 @@ public class FlareFire extends FireBlock {
 		super(builder);
 	}
 	
-	@SubscribeEvent
-	public void leftClickEvent(PlayerInteractEvent.EntityInteract.LeftClickBlock event) {
-		
-		abyssal.logger.info("Player left click event fired.");
-		
-		/*abyssal.logger.info(event.getPos().toString());*/
-		
+	@Override
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+		if(entity instanceof ItemEntity)
+		{
+			entity.remove();
+		} else if (entity instanceof LivingEntity){
+			if(!entity.isImmuneToFire())
+            {
+                ((LivingEntity) entity).setFire(5);
+            }
+		}
 	}
 }

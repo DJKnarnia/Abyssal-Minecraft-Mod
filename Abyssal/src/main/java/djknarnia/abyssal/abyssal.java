@@ -19,11 +19,9 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
-import net.minecraft.item.Item.Properties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -35,7 +33,7 @@ public class abyssal {
 	
 	public static abyssal instance;
 	public static final String modid = "abyssal";
-	public static final Logger logger = LogManager.getLogger();
+	public static final Logger logger = LogManager.getLogger("abyssal");
 	
 	public static final ItemGroup abyssal = new AbyssalItemGroup("Abyssal");
 	
@@ -81,21 +79,11 @@ public class abyssal {
 		}
 		
 		@SubscribeEvent
-		public void leftClickEvent(PlayerInteractEvent.EntityInteract.LeftClickBlock event) {
-			
-			logger.info("Player left click event fired.");
-			
-			/*abyssal.logger.info(event.getPos().toString());*/
-			
-		}
-		
-		@SubscribeEvent
 		public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 			
 			event.getRegistry().registerAll(
 				BlockList.prismarine_quartz_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f, 3.0f).lightValue(5).sound(SoundType.STONE)).setRegistryName(location("prismarine_quartz_block")),
-				BlockList.flare_fire = (FlareFire) new FlareFire(Block.Properties.create(Material.FIRE).hardnessAndResistance(0.0f, 0.0f)).setRegistryName(location("flare_fire"))
-			);
+				BlockList.flare_fire = (FlareFire) new FlareFire(Block.Properties.create(Material.FIRE).hardnessAndResistance(0.0f, 0.0f)).setRegistryName(location("flare_fire")));
 			
 			logger.info("Blocks registered.");
 		}
