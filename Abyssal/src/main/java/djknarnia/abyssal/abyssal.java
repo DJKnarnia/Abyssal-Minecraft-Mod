@@ -1,8 +1,10 @@
 package djknarnia.abyssal;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import djknarnia.abyssal.items.PrismarineAndSteel;
+import djknarnia.abyssal.block.FlareFire;
+import djknarnia.abyssal.item.PrismarineAndSteel;
 import lists.BlockList;
 import lists.ItemList;
 import lists.ToolMaterialList;
@@ -21,6 +23,7 @@ import net.minecraft.item.Item.Properties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -32,7 +35,7 @@ public class abyssal {
 	
 	public static abyssal instance;
 	public static final String modid = "abyssal";
-	private static final Logger logger = org.apache.logging.log4j.LogManager.getLogger(modid);
+	public static final Logger logger = LogManager.getLogger();
 	
 	public static final ItemGroup abyssal = new AbyssalItemGroup("Abyssal");
 	
@@ -70,17 +73,28 @@ public class abyssal {
 				ItemList.prismarine_sword = new SwordItem(ToolMaterialList.prismarine, 1, 6.0f, new Item.Properties().group(abyssal)).setRegistryName(location("prismarine_sword")),
 				ItemList.prismarine_hoe = new HoeItem(ToolMaterialList.prismarine, 6.0f, new Item.Properties().group(abyssal)).setRegistryName(location("prismarine_hoe")),
 				/*Block Items*/
-				ItemList.prismarine_quartz_block = new BlockItem(BlockList.prismarine_quartz_block, new Item.Properties().group(abyssal)).setRegistryName(BlockList.prismarine_quartz_block.getRegistryName())
+				ItemList.prismarine_quartz_block = new BlockItem(BlockList.prismarine_quartz_block, new Item.Properties().group(abyssal)).setRegistryName(BlockList.prismarine_quartz_block.getRegistryName()),
+				ItemList.flare_fire = new BlockItem(BlockList.flare_fire, new Item.Properties().group(abyssal)).setRegistryName(BlockList.flare_fire.getRegistryName())
 			);
 			
 			logger.info("Items registered.");
 		}
 		
 		@SubscribeEvent
+		public void leftClickEvent(PlayerInteractEvent.EntityInteract.LeftClickBlock event) {
+			
+			logger.info("Player left click event fired.");
+			
+			/*abyssal.logger.info(event.getPos().toString());*/
+			
+		}
+		
+		@SubscribeEvent
 		public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 			
 			event.getRegistry().registerAll(
-				BlockList.prismarine_quartz_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f, 3.0f).lightValue(5).sound(SoundType.STONE)).setRegistryName(location("prismarine_quartz_block"))
+				BlockList.prismarine_quartz_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f, 3.0f).lightValue(5).sound(SoundType.STONE)).setRegistryName(location("prismarine_quartz_block")),
+				BlockList.flare_fire = (FlareFire) new FlareFire(Block.Properties.create(Material.FIRE).hardnessAndResistance(0.0f, 0.0f)).setRegistryName(location("flare_fire"))
 			);
 			
 			logger.info("Blocks registered.");
