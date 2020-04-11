@@ -18,4 +18,7 @@ public class ItemList {
 	/*Blocks*/
 	public static Item prismarine_quartz_block;
 	public static Item flare_fire;
+	public static Item flare_fire_submerged;
+	public static Item flare;
+	public static Item flare_submerged;
 }

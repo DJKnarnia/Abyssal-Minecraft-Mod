@@ -5,8 +5,13 @@
 	"item.abyssal.prismarine_shovel": "Prismarine Shovel",
 	"item.abyssal.prismarine_sword": "Prismarine Sword",
 	"item.abyssal.prismarine_hoe": "Prismarine Hoe",
+	
 	"block.abyssal.prismarine_quartz_block": "Prismarine Quartz",
 	"block.abyssal.flare_fire": "Flare Fire",
+	"block.abyssal.flare_fire_submerged": "Flare Fire Submerged",
+	"block.abyssal.flare": "Flare",
+	"block.abyssal.flare_submerged",
+	
 	"itemGroup.abyssal": "Abyssal"
 	
 }

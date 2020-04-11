@@ -3,13 +3,17 @@ package djknarnia.abyssal;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import djknarnia.abyssal.block.FlareBlock;
+import djknarnia.abyssal.block.FlareBlockSubmerged;
 import djknarnia.abyssal.block.FlareFire;
+import djknarnia.abyssal.block.FlareFireSubmerged;
 import djknarnia.abyssal.item.PrismarineAndSteel;
 import lists.BlockList;
 import lists.ItemList;
 import lists.ToolMaterialList;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.TorchBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
@@ -72,7 +76,10 @@ public class abyssal {
 				ItemList.prismarine_hoe = new HoeItem(ToolMaterialList.prismarine, 6.0f, new Item.Properties().group(abyssal)).setRegistryName(location("prismarine_hoe")),
 				/*Block Items*/
 				ItemList.prismarine_quartz_block = new BlockItem(BlockList.prismarine_quartz_block, new Item.Properties().group(abyssal)).setRegistryName(BlockList.prismarine_quartz_block.getRegistryName()),
-				ItemList.flare_fire = new BlockItem(BlockList.flare_fire, new Item.Properties().group(abyssal)).setRegistryName(BlockList.flare_fire.getRegistryName())
+				ItemList.flare_fire = new BlockItem(BlockList.flare_fire, new Item.Properties().group(abyssal)).setRegistryName(BlockList.flare_fire.getRegistryName()),
+				ItemList.flare_fire_submerged = new BlockItem(BlockList.flare_fire_submerged, new Item.Properties().group(abyssal)).setRegistryName(BlockList.flare_fire_submerged.getRegistryName()),
+				ItemList.flare = new BlockItem(BlockList.flare, new Item.Properties().group(abyssal)).setRegistryName(BlockList.flare.getRegistryName()),
+				ItemList.flare_submerged = new BlockItem(BlockList.flare_submerged, new Item.Properties().group(abyssal)).setRegistryName(BlockList.flare_submerged.getRegistryName())
 			);
 			
 			logger.info("Items registered.");
@@ -82,10 +89,14 @@ public class abyssal {
 		public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 			
 			event.getRegistry().registerAll(
-				BlockList.prismarine_quartz_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f, 3.0f).lightValue(5).sound(SoundType.STONE)).setRegistryName(location("prismarine_quartz_block")),
-				BlockList.flare_fire = (FlareFire) new FlareFire(Block.Properties.create(Material.FIRE).hardnessAndResistance(0.0f, 0.0f)).setRegistryName(location("flare_fire")));
-			
-			logger.info("Blocks registered.");
+				BlockList.prismarine_quartz_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f, 3.0f).sound(SoundType.STONE)).setRegistryName(location("prismarine_quartz_block")),
+				BlockList.flare_fire = (FlareFire) new FlareFire(Block.Properties.create(Material.FIRE).lightValue(15)).setRegistryName(location("flare_fire")),
+				BlockList.flare_fire_submerged = (FlareFireSubmerged) new FlareFireSubmerged(Block.Properties.create(Material.FIRE).lightValue(15)).setRegistryName(location("flare_fire_submerged")),
+				BlockList.flare = (FlareBlock) new FlareBlock(TorchBlock.Properties.create(Material.AIR).lightValue(15)).setRegistryName(location("flare")),
+				BlockList.flare_submerged = (FlareBlockSubmerged) new FlareBlockSubmerged(Block.Properties.create(Material.AIR).lightValue(15)).setRegistryName(location("flare_submerged"))
+			);
+				
+				logger.info("Blocks registered.");
 		}
 		
 		private static ResourceLocation location(String name) {

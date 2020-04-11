@@ -1,0 +1,7 @@
+{
+    "parent": "block/fire_floor",
+    "textures": {
+        "particle": "block/fire_1",
+        "fire": "abyssal:block/flare_fire_1"
+    }
+}

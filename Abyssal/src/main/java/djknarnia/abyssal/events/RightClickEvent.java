@@ -3,7 +3,7 @@ package djknarnia.abyssal.events;
 import djknarnia.abyssal.abyssal;
 import lists.BlockList;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.item.Items;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
@@ -14,28 +14,16 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @Mod.EventBusSubscriber(modid = abyssal.modid, bus = Bus.FORGE)
 
-public class LeftClickEvent {
-
+public class RightClickEvent {
+	
 	@SubscribeEvent
-	public static void leftClickEvent(PlayerInteractEvent.EntityInteract.LeftClickBlock event) {
-		
+	public static void fullBucketFlareFire(PlayerInteractEvent.RightClickBlock event) {
 		World world = event.getWorld();
 		Block clickedBlock = world.getBlockState(event.getPos().offset(event.getFace())).getBlock();
 		
-		/*abyssal.logger.info("player left clicked " + event.getPos());*/
-		
-		if(clickedBlock == BlockList.flare_fire) {
-			world.setBlockState(event.getPos().offset(event.getFace()), Blocks.AIR.getDefaultState());
-			
-			double x = event.getPos().getX();
-			double y = event.getPos().getY();
-			double z = event.getPos().getZ();
-			
-			SoundCategory soundCategory = SoundCategory.BLOCKS;
-			
-			world.playSound(x, y, z, SoundEvents.BLOCK_FIRE_EXTINGUISH, soundCategory, 1.0f, 1.0f, false);
-		} else if(clickedBlock == BlockList.flare_fire_submerged) {
-world.setBlockState(event.getPos().offset(event.getFace()), Blocks.WATER.getDefaultState());
+		if(clickedBlock == BlockList.flare_fire && event.getPlayer().getActiveItemStack().getItem() == Items.WATER_BUCKET) {
+			abyssal.logger.info("player used water bucket on flare_fire " + event.getPos());
+			world.setBlockState(event.getPos().offset(event.getFace()), BlockList.flare_fire_submerged.getDefaultState());
 			
 			double x = event.getPos().getX();
 			double y = event.getPos().getY();
@@ -46,4 +34,5 @@ world.setBlockState(event.getPos().offset(event.getFace()), Blocks.WATER.getDefa
 			world.playSound(x, y, z, SoundEvents.BLOCK_FIRE_EXTINGUISH, soundCategory, 1.0f, 1.0f, false);
 		}
 	}
+	
 }
