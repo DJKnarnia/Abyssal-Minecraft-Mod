@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=east": { "model": "abyssal:block/wall_flare" },
-        "facing=south": { "model": "abyssal:block/wall_flare", "y": 90 },
-        "facing=west": { "model": "abyssal:block/wall_flare", "y": 180 },
-        "facing=north": { "model": "abyssal:block/wall_flare", "y": 270 }
-    }
-}

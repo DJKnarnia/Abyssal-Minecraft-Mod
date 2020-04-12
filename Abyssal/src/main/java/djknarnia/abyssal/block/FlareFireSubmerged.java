@@ -1,5 +1,7 @@
 package djknarnia.abyssal.block;
 
+import java.util.Random;
+
 import lists.BlockList;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -9,6 +11,7 @@ import net.minecraft.fluid.IFluidState;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 
 public class FlareFireSubmerged extends FlareFire implements ILiquidContainer {
 
@@ -27,6 +30,11 @@ public class FlareFireSubmerged extends FlareFire implements ILiquidContainer {
 		}
 		
 		return BlockList.flare_fire_submerged.getDefaultState();
+	}
+	
+	@Override
+	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+		
 	}
 	
 }

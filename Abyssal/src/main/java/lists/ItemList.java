@@ -20,5 +20,6 @@ public class ItemList {
 	public static Item flare_fire;
 	public static Item flare_fire_submerged;
 	public static Item flare;
+	public static Item flare_wall;
 	public static Item flare_submerged;
 }

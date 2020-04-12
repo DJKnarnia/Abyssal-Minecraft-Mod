@@ -7,13 +7,16 @@ import djknarnia.abyssal.block.FlareBlock;
 import djknarnia.abyssal.block.FlareBlockSubmerged;
 import djknarnia.abyssal.block.FlareFire;
 import djknarnia.abyssal.block.FlareFireSubmerged;
+import djknarnia.abyssal.block.FlareWallBlock;
 import djknarnia.abyssal.item.PrismarineAndSteel;
 import lists.BlockList;
 import lists.ItemList;
 import lists.ToolMaterialList;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.TorchBlock;
+import net.minecraft.block.WallTorchBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
@@ -23,6 +26,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
+import net.minecraft.item.WallOrFloorItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -78,8 +82,8 @@ public class abyssal {
 				ItemList.prismarine_quartz_block = new BlockItem(BlockList.prismarine_quartz_block, new Item.Properties().group(abyssal)).setRegistryName(BlockList.prismarine_quartz_block.getRegistryName()),
 				ItemList.flare_fire = new BlockItem(BlockList.flare_fire, new Item.Properties().group(abyssal)).setRegistryName(BlockList.flare_fire.getRegistryName()),
 				ItemList.flare_fire_submerged = new BlockItem(BlockList.flare_fire_submerged, new Item.Properties().group(abyssal)).setRegistryName(BlockList.flare_fire_submerged.getRegistryName()),
-				ItemList.flare = new BlockItem(BlockList.flare, new Item.Properties().group(abyssal)).setRegistryName(BlockList.flare.getRegistryName()),
-				ItemList.flare_submerged = new BlockItem(BlockList.flare_submerged, new Item.Properties().group(abyssal)).setRegistryName(BlockList.flare_submerged.getRegistryName())
+				ItemList.flare = new WallOrFloorItem(BlockList.flare, BlockList.flare_wall, new Item.Properties().group(abyssal)).setRegistryName(BlockList.flare.getRegistryName())
+				/*ItemList.flare_submerged = new BlockItem(BlockList.flare_submerged, new Item.Properties().group(abyssal)).setRegistryName(BlockList.flare_submerged.getRegistryName())*/
 			);
 			
 			logger.info("Items registered.");
@@ -92,8 +96,9 @@ public class abyssal {
 				BlockList.prismarine_quartz_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f, 3.0f).sound(SoundType.STONE)).setRegistryName(location("prismarine_quartz_block")),
 				BlockList.flare_fire = (FlareFire) new FlareFire(Block.Properties.create(Material.FIRE).lightValue(15)).setRegistryName(location("flare_fire")),
 				BlockList.flare_fire_submerged = (FlareFireSubmerged) new FlareFireSubmerged(Block.Properties.create(Material.FIRE).lightValue(15)).setRegistryName(location("flare_fire_submerged")),
-				BlockList.flare = (FlareBlock) new FlareBlock(TorchBlock.Properties.create(Material.STRUCTURE_VOID).lightValue(15).sound(SoundType.WOOD)).setRegistryName(location("flare")),
-				BlockList.flare_submerged = (FlareBlockSubmerged) new FlareBlockSubmerged(Block.Properties.create(Material.STRUCTURE_VOID).lightValue(15).sound(SoundType.WOOD)).setRegistryName(location("flare_submerged"))
+				BlockList.flare = (FlareBlock) new FlareBlock(TorchBlock.Properties.from(Blocks.TORCH)).setRegistryName(location("flare")),
+				BlockList.flare_submerged = (FlareBlockSubmerged) new FlareBlockSubmerged(Block.Properties.from(Blocks.TORCH)).setRegistryName(location("flare_submerged")),
+				BlockList.flare_wall = (FlareWallBlock) new FlareWallBlock(WallTorchBlock.Properties.from(Blocks.WALL_TORCH)).setRegistryName(location("flare_wall"))
 			);
 				
 				logger.info("Blocks registered.");
