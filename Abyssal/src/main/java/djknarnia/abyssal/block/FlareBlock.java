@@ -11,8 +11,9 @@ public class FlareBlock extends TorchBlock {
 		super(properties);
 	}
 	
+	/*
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int wx, int wy, int wz) {
 		return null;
 	}
-
+	*/
 }
