@@ -1,13 +1,12 @@
 package djknarnia.abyssal.block;
 
-import net.minecraft.block.TorchBlock;
+import net.minecraft.block.WallTorchBlock;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
+public class FlareWallBlock extends WallTorchBlock {
 
-public class FlareBlock extends TorchBlock {
-
-	public FlareBlock(Properties properties) {
+	protected FlareWallBlock(Properties properties) {
 		super(properties);
 	}
 	

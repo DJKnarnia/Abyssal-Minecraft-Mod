@@ -92,8 +92,8 @@ public class abyssal {
 				BlockList.prismarine_quartz_block = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f, 3.0f).sound(SoundType.STONE)).setRegistryName(location("prismarine_quartz_block")),
 				BlockList.flare_fire = (FlareFire) new FlareFire(Block.Properties.create(Material.FIRE).lightValue(15)).setRegistryName(location("flare_fire")),
 				BlockList.flare_fire_submerged = (FlareFireSubmerged) new FlareFireSubmerged(Block.Properties.create(Material.FIRE).lightValue(15)).setRegistryName(location("flare_fire_submerged")),
-				BlockList.flare = (FlareBlock) new FlareBlock(TorchBlock.Properties.create(Material.AIR).lightValue(15)).setRegistryName(location("flare")),
-				BlockList.flare_submerged = (FlareBlockSubmerged) new FlareBlockSubmerged(Block.Properties.create(Material.AIR).lightValue(15)).setRegistryName(location("flare_submerged"))
+				BlockList.flare = (FlareBlock) new FlareBlock(TorchBlock.Properties.create(Material.STRUCTURE_VOID).lightValue(15).sound(SoundType.WOOD)).setRegistryName(location("flare")),
+				BlockList.flare_submerged = (FlareBlockSubmerged) new FlareBlockSubmerged(Block.Properties.create(Material.STRUCTURE_VOID).lightValue(15).sound(SoundType.WOOD)).setRegistryName(location("flare_submerged"))
 			);
 				
 				logger.info("Blocks registered.");
